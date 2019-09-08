@@ -62,6 +62,8 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 - model用word2vec对news**.txt数据进行训练
 - 待优化：这块有点问题，待优化
 
+### 页面展示：
+![show](https://user-images.githubusercontent.com/9695113/64490639-94336d80-d291-11e9-8e76-bbd9dc97ec18.png)
 
 ## 使用到的技术
 - word2vec
