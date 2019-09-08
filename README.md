@@ -13,9 +13,50 @@ Project01：新闻人物言论自动提取得到说话的人和说话的内容
 9.	获得主语和谓语‘说’的序号之后，我们就要取得‘说的内容’也就是SBV的宾语。那么怎么寻找说的内容呢？首先我们看‘说’后面是否有双引号内容，如果有，取到它，是根据双引号的位置来取得。如果没有或者双引号的内容并不在第一个句子，那么‘说’这个词后面的句子就是‘说的内容’。然后检查第二个句子是否也是‘说的内容’，通过句子的相似性来判断，如果相似度大于某个阈值，我们就认为相似，也就认为这第二句话也是‘说的内容’。至此我们得到了宾语的内容。
 
 
-## 需要创建的文件夹
+## 使用指南
+### 1. 需要创建的文件夹
+- log : 创建后存放日志（暂时用处不大，后面加日志存放的地方）
 - data : 上传相应的数据
-- log : 创建后存放日志
+```
+data（目录下的文件）
+│  news-sentences-xut.txt
+│  news.txt
+│  news_model
+│  news_model.trainables.syn1neg.npy
+│  news_model.wv.vectors.npy
+│  words.txt
+│  zhwiki_news.word2vec (下面3个，需要提前训练好wiki的，这块代码见：https://github.com/Valuebai/learn-NLP-luhuibo/tree/master/lesson-04)
+│  zhwiki_news.word2vec.trainables.syn1neg.npy
+│  zhwiki_news.word2vec.wv.vectors.npy
+│
+├─ltp_data_v3.4.0
+│      cws.model
+│      md5.txt
+│      ner.model
+│      parser.model
+│      pisrl.model
+│      pos.model
+│      version
+│
+└─stop_words
+        stopwords.txt
+        哈工大停用词表.txt
+```
+### 2. config目录，存放数据库、日志配置信息，文件路径（拉取后需要更改路径）
+
+### 3. 核心代码：./similar_said/speechExtract.py 
+- 先对该代码进行测试，用demo进行提取测试，OK 证明代码没问题
+demo: （“国台办表示中国必然统一。会尽最大努力争取和平统一，但绝不承诺放弃使用武力。”）
+
+### 4. flask的 run.py 部署网站代码
+- templates和static存放模板和js、样式
+- 启动后进入网页进行测试
+
+### 5. database和model
+- database读取数据库中的新闻表，存放到data/下的news**.txt
+- model用word2vec对news**.txt数据进行训练
+- 待优化：这块有点问题，待优化
+
 
 ## 使用到的技术
 - word2vec
