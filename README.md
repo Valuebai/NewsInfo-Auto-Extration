@@ -19,7 +19,9 @@ Project01：新闻人物言论自动提取得到说话的人和说话的内容
 
 
 ## 使用指南
-### 1. 需要创建的文件夹
+### 1. git clone https://github.com/Valuebai/NewsInfo-Auto-Extration.git 代码到对应机器上
+
+### 2. 需要创建的文件夹
 - log : 创建后存放日志（暂时用处不大，后面加日志存放的地方）
 - data : 上传相应的数据
 ```
