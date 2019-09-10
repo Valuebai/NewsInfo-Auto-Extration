@@ -50,7 +50,8 @@ data（目录下的文件）
         stopwords.txt
         哈工大停用词表.txt
 ```
-### 2. config目录，存放数据库、日志配置信息，文件路径（拉取后需要更改路径）
+### 2. 需要修改的config目录，存放数据库、日志配置信息，文件路径（拉取后需要更改路径）
+- config目录，修改sys_path绝对路径，看你放在windows还是Linux上的
 
 ### 3. 核心代码：./similar_said/speechExtract.py 
 - 先对该代码进行测试，用demo进行提取测试，OK 证明代码没问题
@@ -68,6 +69,10 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 ### 部署指南
 - 1. 使用screen python run.py运行，关闭shell连接后还会一直在linux上跑
     - 针对用户量小的情况，快速部署（本次使用这个）
+    - 关于screen，详情见：https://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html 
+```
+    杀死所有命令的：ps aux|grep 你的进程名|grep -v grep | awk '{print $2}'|xargs kill -9
+```
 - 2. 使用flask + nginx + uwsgi
     - 针对用户访问量大的情况，具体参考下面的文章
     - https://blog.csdn.net/spark_csdn/article/details/80790929
