@@ -10,6 +10,8 @@ from flask import Flask, render_template, request
 from similar_said.speechExtract import del_sentences
 import jieba
 import re
+import sys
+import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -50,4 +52,7 @@ def extra():
 
 
 if __name__ == "__main__":
+    curPath = os.path.abspath(os.path.dirname(__file__))
+    rootPath = os.path.split(curPath)[0]
+    sys.path.append(rootPath)
     app.run(host='0.0.0.0', debug=True, port=8765)
