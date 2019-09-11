@@ -1,10 +1,22 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import os
+from config.file_path import LTP_DATA_DIR, said_path
 from similar_said.urils import deal
 from similar_said.get_word_similar_said import load_said
-from config.file_path import LTP_DATA_DIR, said_path
 import pysnooper
+
+import sys
+
+# 将module 添加到sys.path中
+self_config_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\config'
+self_database_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\database'
+self_model_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\model'
+self_similar_said_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\similar_said'
+sys.path.append(self_config_path)
+sys.path.append(self_database_path)
+sys.path.append(self_model_path)
+sys.path.append(self_similar_said_path)
 
 
 # 分句

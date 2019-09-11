@@ -8,6 +8,9 @@
 =================================================='''
 from flask import Flask, render_template, request
 from similar_said.speechExtract import del_sentences
+from config.file_path import LTP_DATA_DIR, said_path
+from similar_said.urils import deal
+from similar_said.get_word_similar_said import load_said
 import jieba
 import re
 import sys
