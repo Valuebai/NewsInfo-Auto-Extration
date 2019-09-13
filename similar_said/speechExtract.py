@@ -13,8 +13,6 @@ from similar_said.urils import deal
 from similar_said.get_word_similar_said import load_said
 import pysnooper
 
-import sys
-
 
 # 分句
 def split_sentences(string):
