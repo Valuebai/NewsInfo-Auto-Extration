@@ -6,17 +6,17 @@ import os
 # 需要设置linux或者windows的配置路径
 sys_path = r'C:\AI-NLP\NewsInfo-Auto-Extration'
 
-import sys
-
-# 将module 添加到sys.path中
-self_config_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\config'
-self_database_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\database'
-self_model_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\model'
-self_similar_said_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\similar_said'
-sys.path.append(self_config_path)
-sys.path.append(self_database_path)
-sys.path.append(self_model_path)
-sys.path.append(self_similar_said_path)
+# import sys
+#
+# # 将module 添加到sys.path中
+# self_config_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\config'
+# self_database_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\database'
+# self_model_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\model'
+# self_similar_said_path = r'C:\AI-NLP\NewsInfo-Auto-Extration\similar_said'
+# sys.path.append(self_config_path)
+# sys.path.append(self_database_path)
+# sys.path.append(self_model_path)
+# sys.path.append(self_similar_said_path)
 
 # PYLTP路径的设置
 LTP_MODEL_PATH = sys_path + r'\data\ltp_data_v3.4.0'
