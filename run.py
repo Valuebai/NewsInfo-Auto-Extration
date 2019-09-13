@@ -40,7 +40,8 @@ def extra():
     news = request.form['news']
     print('news is ', news)
     if not news:
-        return '<script>alert("没有输入内容！")</script>'
+        # return '<script>alert("没有输入内容！")</script>'
+        news = "国台办表示中国必然统一。会尽最大努力争取和平统一，但绝不承诺放弃使用武力。"
     parse = del_sentences(news)
     print('parse is', parse)
     # infos = parse()
