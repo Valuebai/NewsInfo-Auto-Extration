@@ -2,9 +2,20 @@
 # 使用方法：在其他文件中导入
 #
 import os
+import platform
 
-# 需要设置linux或者windows的配置路径
-sys_path = r'C:\AI-NLP\NewsInfo-Auto-Extration'
+# 获取系统的信息
+sysstr = platform.system()
+if (sysstr == "Windows"):
+    print("Call Windows tasks")
+    # 需要设置windows的配置路径
+    sys_path = r'C:\AI-NLP\NewsInfo-Auto-Extration'
+elif (sysstr == "Linux"):
+    print("Call Linux tasks")
+    # 需要设置linux的配置路径
+    sys_path = r'/home/student/project/project-01/kill_bug_team/NewsInfo-Auto-Extration'
+else:
+    print("Other System tasks")
 
 # import sys
 #
