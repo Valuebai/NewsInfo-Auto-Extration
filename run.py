@@ -8,9 +8,6 @@
 =================================================='''
 from flask import Flask, render_template, request
 from similar_said.speechExtract import del_sentences
-from config.file_path import LTP_DATA_DIR, said_path
-from similar_said.urils import deal
-from similar_said.get_word_similar_said import load_said
 import jieba
 import re
 import sys
@@ -55,7 +52,4 @@ def extra():
 
 
 if __name__ == "__main__":
-    curPath = os.path.abspath(os.path.dirname(__file__))
-    rootPath = os.path.split(curPath)[0]
-    sys.path.append(rootPath)
     app.run(host='0.0.0.0', debug=True, port=8765)
