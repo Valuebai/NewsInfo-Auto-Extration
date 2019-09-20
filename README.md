@@ -68,7 +68,9 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 - 待优化：这块有点问题，待优化
 
 ### 部署指南
-- 1. 使用screen python run.py运行，关闭shell连接后还会一直在linux上跑
+- 1. 使用screen命令部署
+    - 第一步：screen -S yourname，新建一个叫yourname的session
+    - 第二步：python run.py，运行代码，关闭shell连接后还会一直在linux上跑
     - 针对用户量小的情况，快速部署（本次使用这个）
     - 关于screen，详情见：https://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html 
 ```
