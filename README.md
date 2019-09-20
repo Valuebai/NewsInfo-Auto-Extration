@@ -49,3 +49,108 @@ data（目录下的文件）
 └─stop_words
         stopwords.txt
         哈工大停用词表.txt
+```
+
+### 2. 需要修改的config目录，存放数据库、日志配置信息，文件路径（拉取后需要更改路径）
+- config目录，修改sys_path绝对路径，看你放在windows还是Linux上的
+
+### 3. 核心代码：./similar_said/speechExtract.py 
+- 先对该代码进行测试，用demo进行提取测试，OK 证明代码没问题
+demo: （“国台办表示中国必然统一。会尽最大努力争取和平统一，但绝不承诺放弃使用武力。”）
+
+### 4. flask的 run.py 部署网站代码
+- templates和static存放模板和js、样式
+- 启动后进入网页进行测试
+
+### 5. database和model
+- database读取数据库中的新闻表，存放到data/下的news**.txt
+- model用word2vec对news**.txt数据进行训练
+- 待优化：这块有点问题，待优化
+
+### 部署指南
+- 1. 使用screen python run.py运行，关闭shell连接后还会一直在linux上跑
+    - 针对用户量小的情况，快速部署（本次使用这个）
+    - 关于screen，详情见：https://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html 
+```
+    杀死所有命令的：ps aux|grep 你的进程名|grep -v grep | awk '{print $2}'|xargs kill -9
+    
+    https://www.hutuseng.com/article/how-to-kill-all-detached-screen-session-in-linux
+```
+- 2. 使用flask + nginx + uwsgi
+    - 针对用户访问量大的情况，具体参考下面的文章
+    - https://blog.csdn.net/spark_csdn/article/details/80790929
+    - https://www.cnblogs.com/Ray-liang/p/4173923.html
+    - https://blog.csdn.net/daniel_ustc/article/details/9070357
+
+
+### 页面展示：
+- demo ：http://39.100.3.165:8765/
+![show](https://user-images.githubusercontent.com/9695113/64490639-94336d80-d291-11e9-8e76-bbd9dc97ec18.png)
+
+## 使用到的技术
+- word2vec
+- pyltp
+- flask
+
+...
+
+## 待优化的点
+- 前端页面
+- 算法实现
+- 高效利用数据库
+
+
+> ### 言论提取
++ #### 语料库获取
+    + ##### Wiki语料库
+        ① 使用维基百科下载中文语料库  
+        链接：https://dumps.wikimedia.org/zhwiki/20190720/ 
+
+        ② 抽取语料库的内容     
+            链接：https://github.com/attardi/wikiextractor  
+            方法1: wikiextractor    
+            github上下载 `git clone https://github.com/attardi/wikiextractor.git`   
+            进入目录，运行 `python WikiExtractor.py -o zhwiki-20190401-pages-articles.xml.bz 文件名`  
+            方法2：gensim WikiCorpus   
+            安装gensim，调用即可   
+        
+    + ##### 新闻语料库  
+        此项目使用的是阿里云数据库，远程访问即可  
+        ```
+        数据库地址（Host）  
+        用户名（User）  
+        用户密码（Password）   
+        数据库名（Database）    
+        表名  
+        ```
+        访问工具：pymysql 或者 sqlalchemy  
+    + ##### 合并两个语料库,进行词向量训练，方便获取与‘说’相近的词
++ #### 数据预处理、Word2Vec词向量训练 
+    具体操作，请访问     
+    ```
+    https://github.com/huangmgithub/NLP_Course/tree/master/Lesson04
+    ``` 
+    词向量训练完成后，可获得以下文件：
+    ```
+    wiki.zh.model
+    wiki.zh.model.trainables.syn1neg.npy
+    wiki.zh.model.wv.vectors.npy
+    wiki.zh.vectors
+    ```
++ #### 获取与‘说’相近的词 
+    工具：搜索树（广度优先） + 动态规划 + NER
+
++ #### 抽取新闻人物观点
+    工具：pyltp(自然语言处理工具) + TF-IDF(文本相似度) 
+
+    pyltp参考文档:  
+    `https://pyltp.readthedocs.io/zh_CN/latest/`  
+    sklearn参考文档:    
+    `https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html`
+
+
+## requirements.txt
+- 生成指南：
+- 第一步：安装包 pip install pipreqs
+- 第二步：在对应路径cmd，输入命令生成 requirements.txt文件：pipreqs ./ --encoding=utf8 避免中文路径报错
+- 第三步：下载该代码后直接pip install -r requirements.txt
