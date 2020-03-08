@@ -126,3 +126,5 @@ dmypy.json
 
 /data/
 .idea/
+/database/get_data - 快的.py
+/database/get_data-慢的.py
