@@ -10,8 +10,6 @@ from flask import Flask, render_template, request
 from similar_said.speechExtract import del_sentences
 import jieba
 import re
-import sys
-import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -25,7 +23,13 @@ def get_fly_words(fly_str):
     }
 
 
-@app.route('/')
+# 展示网站主页
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
+
+
+@app.route('/SpeechExtraction')
 def index():
     fly_str = """
         新闻人物言论自动提取。 
@@ -53,4 +57,6 @@ def extra():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=8765)
+    app.debug = True
+    jieba.initialize()
+    app.run(host='0.0.0.0', debug=True, port=8088)

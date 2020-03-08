@@ -1,9 +1,39 @@
 # NewsInfo-Auto-Extration   新闻人物言论自动提取
 
-![Languages](https://img.shields.io/badge/Languages-Python3.6-green)
+![Languages](https://img.shields.io/badge/Languages-Python3.6.5-blue)
 ![Build](https://img.shields.io/badge/Build-passing-brightgreen.svg)
-![License](https://img.shields.io/badge/License-MIT-orange.svg)
 ![Contributions](https://img.shields.io/badge/Contributions-welcome-ff69b4.svg)
+
+## 项目展示
+
+http://111.229.74.215:8088/SpeechExtraction/
+
+![demo picture](./static/images/demo.jpg)
+
+
+## 项目部署
+
+### 正常步骤
+1. 将项目代码克隆到本地，git clone https://github.com/Valuebai/NewsInfo-Auto-Extration.git
+2. 安装python环境，本项目使用python3.6.5
+3. 安装pip包，pip install -r requirements.txt
+4. 运行项目看效果，python run.py 
+5. 项目运行正常，linux上可使用下面的命令让其在后台运行
+ ```
+ # linux 上需要先安装gunicorn -->> pip3 install gunicorn
+ sh run.sh 或者 . run.sh 运行
+ ```
+ 
+### 为Python项目创建独立的虚拟环境（可选）
+[python在win/linux创建虚拟环境](https://blog.csdn.net/luhuibo318/article/details/94011917)
+
+
+### 新购买的linux-CentOS7 云服务器部署指南
+1. [【Linux】CentOS-常用命令&新购买云服务器安装必看](https://github.com/Valuebai/awesome-python-io/issues/1)
+2. [总结python+flask项目在linux部署的五大方法](https://blog.csdn.net/luhuibo318/article/details/102688154)
+
+
+
 
 ## 一个简要的思路，供大家参考
 Project01：新闻人物言论自动提取得到说话的人和说话的内容
