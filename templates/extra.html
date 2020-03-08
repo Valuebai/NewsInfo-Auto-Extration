@@ -1,13 +1,43 @@
-<!doctype html>
-<title>Hello from Flask</title>
-{% if news %}
-<h1>
-    {% for i in news %}
-    {{ i }}{# 注意i也要用两个大括号 #}<br>
-    {% endfor %}
-</h1>
-{% else %}
-<h1>
-    Hello, World!
-</h1>
-{% endif %}
+<html>
+<head>
+    <title>提取结果</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/main.css') }}">
+</head>
+
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+	<div class="contain">
+        <iframe name="fly_words" src="{{ url_for('fly_words') }}?s={{ fly_str }}" style="width: 100%; height: 500px" frameborder="" scrolling="no">
+    </iframe>
+	</div>
+    <div class="contain textarea" style="width: 100%">
+        {% if infos_type == 'str' %}
+            <div class="contain">
+                <p class="title">未提取到数据！原内容如下：</p>
+            </div>
+            <p>{{ infos }}</p>
+        {% else %}
+            <div class="contain">
+                <p class="title">提取结果</p>
+            </div>
+            <center>
+            <table class="contain textarea" style="max-width: 960px; width: auto;" border="5px" >
+                <tr>
+                    <td>Who</td>
+                    <td>Expression</td>
+                    <td>Content</td>
+                </tr>
+                {% for info in infos %}
+                    <tr>
+                    {% for v in info %}
+                        <td style="text-align: center">{{ v }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            </center>
+        {% endif %}
+        <div style="margin-top: 100px;">&nbsp;</div>
+    </div>
+</body>
+
+</html>

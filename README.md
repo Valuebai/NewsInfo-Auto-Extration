@@ -1,6 +1,6 @@
 # NewsInfo-Auto-Extration   新闻人物言论自动提取
 
-![Languages](https://img.shields.io/badge/Languages-Python3.6-green)
+![Languages](https://img.shields.io/badge/Languages-Python3.6.5-blue)
 ![Build](https://img.shields.io/badge/Build-passing-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-orange.svg)
 ![Contributions](https://img.shields.io/badge/Contributions-welcome-ff69b4.svg)

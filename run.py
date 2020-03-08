@@ -49,8 +49,10 @@ def extra():
     #     infos_type = "list"
     # else:
     #     infos_type = 'str'
-    return render_template('extra.html', news=parse)
+    return render_template('extra-original.html', news=parse)
 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=8765)
+
+# 前端页面重构失败，下周再好好整理下，这周主要心思放到project2上面，而不是前端的
