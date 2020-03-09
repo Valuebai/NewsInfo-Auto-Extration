@@ -6,7 +6,7 @@
 
 ## 项目展示
 
-http://111.229.74.215:8088/SpeechExtraction/
+http://111.229.74.215:8088/
 
 ![demo picture](./static/images/demo.jpg)
 

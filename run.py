@@ -34,7 +34,7 @@ def get_fly_words(fly_str):
     }
 
 
-@app.route('/fly-words')
+@app.route('/fly-words', methods=['GET', 'POST'])
 def fly_words():
     fly_str_base64 = request.args.get('s')
     fly_str = ''
@@ -50,12 +50,12 @@ def fly_words():
 
 
 # 展示网站主页
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
 
-@app.route('/SpeechExtraction')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     fly_str = """
         新闻人物言论自动提取。 
