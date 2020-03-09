@@ -64,7 +64,7 @@ class GetLogger:
         if logs_dir is None:
             sep = os.sep  # 自动匹配win,mac,linux 下的路径分隔符
             self.logs_dir = os.path.abspath(
-                os.path.join(__file__, f"..{sep}logs{sep}"))  # 设置日志保存路径
+                os.path.join(__file__, f"..{sep}..{sep}logs{sep}"))  # 设置日志保存路径
 
         # 如果logs文件夹不存在，则创建
         if os.path.exists(self.logs_dir) is False:
