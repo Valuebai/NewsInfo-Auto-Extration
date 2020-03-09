@@ -12,6 +12,7 @@ from config.log_config import logger
 import jieba
 import base64
 import re
+import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -91,4 +92,35 @@ def extra():
 if __name__ == "__main__":
     app.debug = True
     jieba.initialize()
+
+    from config.load_pyltp_model import parser, recognizer, postagger
+    from config.load_pyltp_model import par_model_path, ner_model_path, pos_model_path
+
+    parser.load(par_model_path)
+    recognizer.load(ner_model_path)  # 加载模型
+    postagger.load(pos_model_path)
+
     app.run(host='0.0.0.0', debug=True, port=8088)
+
+'''
+'''
+'''
+  15:52:09.553247 call        49 def dependency_parsing(ltp_model_path, sents, postags, said):
+    15:52:09.553386 line        50     LTP_DATA_DIR = ltp_model_path  # ltp模型目录的路径
+    New var:....... LTP_DATA_DIR = PosixPath('/root/NewsInfo-Auto-Extration/data/ltp_data_v3.4.0')
+    15:52:09.553479 line        51     par_model_path = os.path.join(LTP_DATA_DIR, 'parser.model')  # 依存句法分析模型路径，模型名称为`parser.model`
+    New var:....... par_model_path = '/root/NewsInfo-Auto-Extration/data/ltp_data_v3.4.0/parser.model'
+    15:52:09.553607 line        52     ner_model_path = os.path.join(LTP_DATA_DIR, 'ner.model')  # 依存句法分析模型路径，模型名称为`ner.model`
+    New var:....... ner_model_path = '/root/NewsInfo-Auto-Extration/data/ltp_data_v3.4.0/ner.model'
+    15:52:09.553730 line        55     from pyltp import Parser, NamedEntityRecognizer
+    New var:....... Parser = <class 'pyltp.Parser'>
+    New var:....... NamedEntityRecognizer = <class 'pyltp.NamedEntityRecognizer'>
+    15:52:09.553846 line        56     recognizer = NamedEntityRecognizer()  # 初始化实例
+    New var:....... recognizer = <pyltp.NamedEntityRecognizer object at 0x7faa597a5e30>
+    15:52:09.553967 line        57     recognizer.load(ner_model_path)  # 加载模型
+    15:52:09.778261 line        59     parser = Parser()  # 初始化实例
+    New var:....... parser = <pyltp.Parser object at 0x7faa597a5bc8>
+    15:52:09.778526 line        60     parser.load(par_model_path)  # 加载模型
+'''
+'''
+'''
