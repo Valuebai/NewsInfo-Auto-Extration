@@ -52,7 +52,6 @@ Project01：新闻人物言论自动提取得到说话的人和说话的内容
 ### 1. git clone https://github.com/Valuebai/NewsInfo-Auto-Extration.git 代码到对应机器上
 
 ### 2. 需要创建的文件夹
-- log : 创建后存放日志（暂时用处不大，后面加日志存放的地方）
 - data : 上传相应的数据
 ```
 windows下在cmd输入：tree /f 生成
@@ -97,7 +96,9 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 - model用word2vec对news**.txt数据进行训练
 - 待优化：这块有点问题，待优化
 
-### 部署指南
+
+
+## 部署指南
 - 1. 使用screen命令部署
     - 第一步：screen -S yourname，新建一个叫yourname的session
     - 第二步：python run.py，运行代码，关闭shell连接后还会一直在linux上跑
@@ -131,15 +132,6 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 ```
 
 
-### 页面展示：
-- demo ：http://39.100.3.165:8765/
-![show](https://user-images.githubusercontent.com/9695113/64490639-94336d80-d291-11e9-8e76-bbd9dc97ec18.png)
-
-## 使用到的技术
-- word2vec
-- pyltp
-- flask
-
 ...
 
 ## 待优化的点
@@ -148,57 +140,9 @@ demo: （“国台办表示中国必然统一。会尽最大努力争取和平�
 - 高效利用数据库
 
 
-> ### 言论提取
-+ #### 语料库获取
-    + ##### Wiki语料库
-        ① 使用维基百科下载中文语料库  
-        链接：https://dumps.wikimedia.org/zhwiki/20190720/ 
+## 前端页面-
 
-        ② 抽取语料库的内容     
-            链接：https://github.com/attardi/wikiextractor  
-            方法1: wikiextractor    
-            github上下载 `git clone https://github.com/attardi/wikiextractor.git`   
-            进入目录，运行 `python WikiExtractor.py -o zhwiki-20190401-pages-articles.xml.bz 文件名`  
-            方法2：gensim WikiCorpus   
-            安装gensim，调用即可   
-        
-    + ##### 新闻语料库  
-        此项目使用的是阿里云数据库，远程访问即可  
-        ```
-        数据库地址（Host）  
-        用户名（User）  
-        用户密码（Password）   
-        数据库名（Database）    
-        表名  
-        ```
-        访问工具：pymysql 或者 sqlalchemy  
-    + ##### 合并两个语料库,进行词向量训练，方便获取与‘说’相近的词
-+ #### 数据预处理、Word2Vec词向量训练 
-    具体操作，请访问     
-    ```
-    https://github.com/huangmgithub/NLP_Course/tree/master/Lesson04
-    ``` 
-    词向量训练完成后，可获得以下文件：
-    ```
-    wiki.zh.model
-    wiki.zh.model.trainables.syn1neg.npy
-    wiki.zh.model.wv.vectors.npy
-    wiki.zh.vectors
-    ```
-+ #### 获取与‘说’相近的词 
-    工具：搜索树（广度优先） + 动态规划 + NER
+- [flask 中的模板语法 jinja2及render_template的深度用法](https://www.cnblogs.com/baijinshuo/p/10245418.html)
 
-+ #### 抽取新闻人物观点
-    工具：pyltp(自然语言处理工具) + TF-IDF(文本相似度) 
-
-    pyltp参考文档:  
-    `https://pyltp.readthedocs.io/zh_CN/latest/`  
-    sklearn参考文档:    
-    `https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html`
-
-
-## requirements.txt
-- 生成指南：
-- 第一步：安装包 pip install pipreqs
-- 第二步：在对应路径cmd，输入命令生成 requirements.txt文件：pipreqs ./ --encoding=utf8 避免中文路径报错
-- 第三步：下载该代码后直接pip install -r requirements.txt
+- [Flask学习总结笔记（3）-- Jinja2模板引擎之一](https://blog.csdn.net/kikaylee/article/details/53523598)
+- [Flask学习总结笔记（4）-- Jinja2模板引擎之二](https://blog.csdn.net/kikaylee/article/details/53540352)

@@ -16,9 +16,9 @@ if (sysstr == "Windows"):
 elif (sysstr == "Linux"):
     print("Call Linux tasks")
     # 需要设置linux的配置路径
-    sys_path = Path(r'/home/student/project/project-01/kill_bug_team/NewsInfo-Auto-Extration')
+    sys_path = Path(r'/root/NewsInfo-Auto-Extration')
     # ltp模型目录的路径
-    LTP_DATA_DIR = Path(r'/home/student/project/project-01/kill_bug_team/NewsInfo-Auto-Extration/data/ltp_data_v3.4.0')
+    LTP_DATA_DIR = Path(r'/root/NewsInfo-Auto-Extration/data/ltp_data_v3.4.0')
 else:
     print("Other System tasks")
 
