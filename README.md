@@ -19,6 +19,10 @@ http://111.229.74.215:8088/SpeechExtraction/
 
 ### 3. 安装pip包，pip install -r requirements.txt
 
+- linux-CentOS7 安装pyltp可能遇到的坑
+  - 执行yum install gcc-c++ 解决报错gcc: error trying to exec 'cc1plus': execvp: No such file or directory
+  - 安装pyltp的过程中还是一直报文件的语法错误，pip install pyltp==0.1.9.1  安装成功
+
 ### 4. 需要创建的文件夹
 - data : 上传相应的数据
 ```
