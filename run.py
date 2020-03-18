@@ -6,32 +6,14 @@
 @Date   ：2019/9/3 23:14
 @Desc   ：
 =================================================='''
-from flask import Flask, render_template, request
-from similar_said.speechExtract import del_sentences
-from config.log_config import logger
 import jieba
-import base64
-import re
+from flask import Flask, render_template, request
+from config.log_config import logger
+from common.ball_fly_words import base64_decode, base64_encode, get_fly_words
+from common.pyltp_model import LtpModel
+from config.file_path import LTP_DATA_DIR  # pyltp的存放路径
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
-
-
-def base64_encode(s):
-    return base64.encodebytes(s.encode()).decode().replace('\n', '').replace('/', '_').replace("+", '-')
-
-
-def base64_decode(base64_str):
-    base64_str = base64_str.replace('_', '/').replace("-", '+')
-    return base64.decodebytes(base64_str.encode()).decode()
-
-
-def get_fly_words(fly_str):
-    fly_words = []
-    for x in re.findall(r'\w+', fly_str):
-        fly_words += jieba.lcut(x)
-    return {
-        'wordList': fly_words,
-    }
 
 
 @app.route('/fly-words', methods=['GET', 'POST'])
@@ -77,7 +59,7 @@ def extra():
     if not news:
         # return '<script>alert("没有输入内容！")</script>'
         news = "国台办表示中国必然统一。会尽最大努力争取和平统一，但绝不承诺放弃使用武力。台湾人民说回归中国好啊"
-    news_parse = del_sentences(news)
+    news_parse = ltp_manager.get_sentences_json_result(news)
     logger.info(news_parse)
     if isinstance(news_parse, list):
         infos_type = "list"
@@ -89,6 +71,6 @@ def extra():
 
 
 if __name__ == "__main__":
-    app.debug = True
+    ltp_manager = LtpModel(LTP_DATA_DIR)
     jieba.initialize()
-    app.run(host='0.0.0.0', debug=True, port=8088)
+    app.run(host='0.0.0.0', port=8088)

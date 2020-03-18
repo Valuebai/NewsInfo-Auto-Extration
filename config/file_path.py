@@ -30,15 +30,3 @@ path_news_model = sys_path / r'data/news_model'
 # said的路径
 said_path = sys_path / r'similar_said'
 
-# 初始化路径
-
-# 分词模型路径，模型名称为`cws.model`
-cws_model_path = LTP_DATA_DIR / r'cws.model'
-# 词性标注模型路径，模型名称为`pos.model`
-pos_model_path = LTP_DATA_DIR / r'pos.model'
-# 命名实体识别模型路径，模型名称为`pos.model`
-ner_model_path = LTP_DATA_DIR / r'ner.model'
-# 依存句法分析模型路径，模型名称为`parser.model`
-par_model_path = LTP_DATA_DIR / r'parser.model'
-# 语义角色标注模型目录路径，模型目录为`srl`
-srl_model_path = LTP_DATA_DIR / r'pisrl.model'

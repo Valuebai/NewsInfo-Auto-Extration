@@ -5,6 +5,7 @@
 @Author ：LuckyHuibo
 @Date   ：2019/8/28 13:05
 @Desc   ：
+用word2vec 训练模型，或者直接用现成的，这里用现成的
 =================================================='''
 import sys
 import os

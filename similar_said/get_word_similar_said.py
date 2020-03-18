@@ -5,9 +5,12 @@
 @Author ：LuckyHuibo
 @Date   ：2019/8/28 13:15
 @Desc   ：
+1、利用word2vec（模型是预训练好的）跟广度优先搜索算法获取跟“说”有关的词，保存到../data/words.txt
+2、加载数据进行查看
 =================================================='''
 from gensim.models import Word2Vec
 from collections import defaultdict
+from config.file_path import said_path
 import os
 
 
@@ -42,15 +45,15 @@ def get_words_said(model_path):
     related_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
     print(related_words)
     said = [i[0] for i in related_words if i[1] >= 1]
-    print(said)
+
     return said
 
 
-def save_said(path):
-    said = get_words_said(path)
+def save_said(wv_model_path, save_path):
+    said = get_words_said(wv_model_path)
     string = '|'.join(said)
     try:
-        with open("similar_said.txt", 'w', encoding='utf-8') as f:
+        with open(save_path, 'w', encoding='utf-8') as f:
             f.write(string)
         return True
     except:
@@ -65,13 +68,15 @@ def load_said(filename):
             return string
 
 
+txt_path = os.path.join(said_path, "similar_said.txt")
+txt_said = load_said(txt_path)
+
 if __name__ == '__main__':
-    # path = "../data/news_model"
-    path = "../data/zhwiki_news.word2vec"
-    result = save_said(path)
+    wv_model_path = "../data/zhwiki_news.word2vec"
+    result = save_said(wv_model_path=wv_model_path, save_path="similar_said.txt")
     if result:
-        string = load_said("../data/similar_said.txt")
+        string = load_said("../data/words.txt")
         print(string)
-    model = Word2Vec.load(path)
+    model = Word2Vec.load(wv_model_path)
     said = model['说']
     print(said)
