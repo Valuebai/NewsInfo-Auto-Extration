@@ -34,6 +34,7 @@ def fly_words():
 # 展示网站主页
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    logger.info('访问/home 主页')
     return render_template('home.html')
 
 
@@ -67,10 +68,13 @@ def extra():
     else:
         infos_type = 'str'
         logger.info('parse is str')
+        logger.info(infos_type)
     return render_template('extra.html', infos=news_parse, infos_type=infos_type, fly_str=base64_encode(news[:500]))
 
 
 if __name__ == "__main__":
+    logger.info('初始化pyLtpModel')
     ltp_manager = LtpModel(LTP_DATA_DIR)
+    logger.info('初始化jiebaModel')
     jieba.initialize()
     app.run(host='0.0.0.0', port=8088)
